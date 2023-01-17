@@ -20,13 +20,13 @@
 # include	<unistd.h>
 # include	<math.h>
 # include	<complex.h>
-# include	<mlx.h>
+# include	"./mlx/mlx.h"
 # include	"./libft/libft.h"
 # define	MAX_ITER	75
 # define	DEEP_COLOR	0x000000
 # define	SURF_COLOR	0xFFFFFF
-# define	WIN_W		1000
-# define	WIN_H		800
+# define	WIN_W		800
+# define	WIN_H		600
 # define	MAG_FORCE	1.1
 # define	MOVE_FORCE	0.1	
 # define	WHITE 		0xFFFFFF

@@ -58,9 +58,10 @@ $(LFTA):
 	@ cp $(LFTA) $(NAME)	
 
 clean	:
-	$(info Cleaning objects...)
+	$(info # Cleaning objects...)
 	@ rm -rf $(ODIR)
 	$(MLIBFT) clean
+	$(info # Cleaning done!)
 
 fclean	: clean
 	@ rm -rf $(NAME)

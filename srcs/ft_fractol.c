@@ -17,8 +17,11 @@ static int	ft_init_mlx(t_vars *vars)
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "fract-ol");
 	vars->img.img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
+
+	// Get memory address and relevant information of the previously created image
 	vars->img.addr = mlx_get_data_addr(vars->img.img, \
 					&vars->img.bpp, &vars->img.line_length, &vars->img.endian);
+
 	mlx_key_hook(vars->win, ft_keyhandler, vars);
 	mlx_mouse_hook(vars->win, ft_mousehandler, vars);
 	mlx_loop_hook(vars->mlx, ft_fractal, vars);
@@ -68,6 +71,20 @@ void	*ft_getfractal(char *fractal)
 	return (NULL);
 }
 
+void	psychedelic_mode(t_frac *f)
+{
+	f->surf_color = ft_colorshift(f->surf_color, \
+					f->surf_color - 65284, 1);
+	f->deep_color = ft_colorshift(f->deep_color, \
+					f->deep_color + 65284, 1);
+}
+
+void	animate_julia(t_frac *f)
+{
+	f->c_r_mod -= 0.003;
+			f->c_i_mod -= 0.003;
+}
+
 int	ft_fractal(t_vars *vars)
 {
 	t_frac	*f;
@@ -77,30 +94,22 @@ int	ft_fractal(t_vars *vars)
 	if (timer == 0)
 	{
 		f = ft_getsettings();
-		if (f->anim_mode == 1 && f->fractal == ft_julia)
+		if (f != NULL && f->fractal != NULL)
 		{
-			f->c_r_mod -= 0.003;
-			f->c_i_mod -= 0.003;
-		}
-			if (f != NULL && f->fractal != NULL)
-		{
+			if (f->anim_mode == 1 && f->fractal == ft_julia)
+				animate_julia(f);
+				
 			if (f->psy_mode == 1)
-			{
-				f->surf_color = ft_colorshift(f->surf_color, \
-								f->surf_color - 65284, 1);
-				f->deep_color = ft_colorshift(f->deep_color, \
-								f->deep_color + 65284, 1);
-			}
+				psychedelic_mode(f);
+
 			mlx_clear_window(vars->mlx, vars->win);
 			ft_plot_fractal(f, &vars->img);
 			ft_draw_img(vars, vars->img.img, 0, 0);
 		}
 		timer = timer_max;
-		
 	}
 	else
 	{
-		//printf("%d\n", timer);
 		timer--;
 	}
 	return (0);
