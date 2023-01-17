@@ -5,7 +5,7 @@
 ## Description
 **Fractal visualizer** using a minimalistic CPU graphical library (MiniLibX)  
 It supports Mandelbrot, Julia and Burning ship.  
-I might revisit this project considering I was quite limited by the subject requirement.
+I might revisit this project considering I was quite limited by the subject's restrictions.
   
 <img alt="Mandelbrot image" src="/images/mandelbrot.png" width="200" height="200" align="left">
 <img alt="Psychedelic image" src="/images/psychedelic2.png" height="200" align="left">
@@ -29,20 +29,6 @@ If I was to work on it again, I would:
 - Implements threads and smoother rendering;
 - Make it render at 30 FPS or 60 FPS using system time to calculate frame duration (which I couldn't use at the time).
 
-## Controls
-escape : quit  
-  
-c : toggle color animation  
-a : toggle Julia animation  
-p : toggle psychedelic mode  
-r : reset fractal  
-  
-arrows : move fractal  
-mouse wheel : zoom in/out  
-  
-m j b : print Mandelbrot, Julia or "Burning ship" respectively  
-1 to 9 : change Julia's parameter (when printing a Julia fractal)
-
   
 ## How it works (roughly)
 After parsing the user input, the hook functions (keys, mouse and loop) are set up.  
@@ -53,6 +39,7 @@ After parsing the user input, the hook functions (keys, mouse and loop) are set 
 The loop function calculate the fractal depth for every pixel, clear the window and reprint the fractal on a given interval.  
   
 <img alt="Loop code image" src="/images/code_loop.png" height="190">  
+  
   
   
 To calculate the depths, the plotting function will execute the corresponding fractal math function for every pixel.  
@@ -66,13 +53,27 @@ The deeper it is, the stronger the color will be shifted towards the floor's col
 Mandelbrot, Julia and Burning Ship' formulas resolve around iterating constantly using the previous iteration's result.  
 My Mandelbrot and Burning Ship implementations look like this:  
   
-<img alt="Mandelbrot math image" src="/images/code_mandelbrot.png" height="270" align="left">
+<img alt="Mandelbrot math image" src="/images/code_mandelbrot.png" height="270">
 <img alt="Burning Ship math image" src="/images/code_burningship.png" height="55">  
   
 ## How to run (MacOS only)
 - Clone the repository;
 - run "make" on the console in the root directory;
 - run "./fractol [fractal_type]". The types are m, j or b.
+
+## Controls
+escape : quit  
+  
+c : toggle color animation  
+a : toggle Julia animation  
+p : toggle psychedelic mode  
+r : reset fractal  
+  
+arrows : move fractal  
+mouse wheel : zoom in/out  
+  
+m j b : print Mandelbrot, Julia or "Burning ship" respectively  
+1 to 9 : change Julia's parameter (when printing a Julia fractal)
 
 
   
