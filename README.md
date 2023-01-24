@@ -36,7 +36,7 @@ After parsing the user input, the hook functions (keys, mouse and loop) are set 
 <img alt="MLX hook code image" src="/images/code_hook.png" height="215">
   
   
-The loop function calculate the fractal depth for every pixel, clear the window and reprint the fractal on a given interval.  
+The loop function calculates the fractal depth for every pixel, clear the window and reprint the fractal on a given interval.  
   
 <img alt="Loop code image" src="/images/code_loop.png" height="190">  
   
